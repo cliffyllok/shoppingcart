@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Badge from '@material-ui/core/Badge';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -14,7 +15,13 @@ class Navbar extends Component{
                     <ul className="right">
                         <li><Link to="/">Shop</Link></li>
                         <li><Link to="/cart">My cart</Link></li>
-                        <li><Link to="/cart"><i className="material-icons">shopping_cart</i><p>{this.props.items.quantity}</p></Link></li>
+                        <li><Link to="/diy">DIY</Link></li>
+                        <li><Link to="/cart">
+                            <Badge badgeContent={this.props.items.length} color="primary" anchorOrigin={{ horizontal: 'right', vertical: 'top', }} overlap='circle' > 
+                                <i className="material-icons">shopping_cart</i>
+                            </Badge>
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -23,8 +30,7 @@ class Navbar extends Component{
         }
     }
 const mapStateToProps = (state)=>{
-    alert (state.addedItems);
-    alert (state.addedItems.quantity);
+    
     return {
         items: state.addedItems
     }
